@@ -1,6 +1,6 @@
 # ShootThemUp
 
-
+![image](https://user-images.githubusercontent.com/29784234/132106323-c65ab7e8-6533-4f24-9516-40f6f1ad2f00.png)
 
 Проект на Unreal Engine 5 из курса: https://www.udemy.com/course/unrealengine/
 
