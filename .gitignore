@@ -1,0 +1,7 @@
+.vs
+.idea
+Binaries/
+Build/
+Intermediate/
+Saved/
+*.sln
