@@ -3,6 +3,7 @@
 
 #include "Player/STUBaseCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/Components/STUCharacterMovementComponent.h"
 #include "Player/Components/STU_WeaponComponent.h"
@@ -113,11 +114,17 @@ void ASTUBaseCharacter::OnDeath()
     {
         Controller->ChangeState(NAME_Spectating);
     }
+    GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 }
 
 void ASTUBaseCharacter::OnHealthChanged(float Health)
 {
     HealthTextComponent->SetText(FText::FromString(FString::Printf(TEXT("%.0f"), Health)));
+}
+
+void ASTUBaseCharacter::KillCharacter()
+{
+    TakeDamage(HealthComponent->GetMaxHealth(), FDamageEvent { }, nullptr, nullptr);
 }
 
 void ASTUBaseCharacter::OnGroundLanded(const FHitResult &result)

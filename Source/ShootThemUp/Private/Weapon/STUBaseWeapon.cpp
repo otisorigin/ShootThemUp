@@ -4,6 +4,8 @@
 #include "Weapon/STUBaseWeapon.h"
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"
+#include "Player/STUBaseCharacter.h"
+#include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogBaseWeapon, All, All);
 
@@ -42,7 +44,7 @@ void ASTUBaseWeapon::MakeShot()
     {
         DrawDebugLine(GetWorld(), GetMuzzleWorldLocation(), HitResult.ImpactPoint, FColor::Red, false, 3.0f,0,3.0f);
         DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10.0f, 24, FColor::Red, false, 5.0f);
-        UE_LOG(LogBaseWeapon, Display, TEXT("Bone: %s"), *HitResult.BoneName.ToString());
+        MakeDamage(HitResult);
     }
     else
     {
@@ -97,5 +99,21 @@ void ASTUBaseWeapon::MakeHit(FHitResult& HitResult, const FVector& TraceStart, c
     CollisionParams.AddIgnoredActor(GetOwner());
 
     GetWorld()->LineTraceSingleByChannel(HitResult, TraceStart, TraceEnd, ECollisionChannel::ECC_Visibility, CollisionParams);
+}
+
+void ASTUBaseWeapon::MakeDamage(FHitResult &HitResult) const
+{
+    UE_LOG(LogBaseWeapon, Display, TEXT("Bone: %s"), *HitResult.BoneName.ToString());
+    if(!HitResult.GetActor()) return;
+    
+    ASTUBaseCharacter* DamagedActor = Cast<ASTUBaseCharacter>(HitResult.GetActor());
+    if(HitResult.BoneName.ToString() == "b_head")
+    {
+        UE_LOG(LogBaseWeapon, Display, TEXT("Killing character"));
+        DamagedActor->KillCharacter();
+    } else
+    {
+        UGameplayStatics::ApplyDamage(DamagedActor, HitValue, nullptr, nullptr, nullptr);
+    }
 }
 

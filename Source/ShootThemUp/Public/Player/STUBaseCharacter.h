@@ -62,6 +62,8 @@ public:
     UFUNCTION(BlueprintCallable, Category="Movement")
     float GetMovementDirection() const;
 
+    void KillCharacter();
+
 private:
     bool IsMovingForward = false;
     bool WantsToRun = false;
