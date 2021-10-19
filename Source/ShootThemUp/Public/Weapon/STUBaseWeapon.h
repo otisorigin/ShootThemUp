@@ -16,15 +16,14 @@ class SHOOTTHEMUP_API ASTUBaseWeapon : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ASTUBaseWeapon();
+    virtual void StartFire();
+    virtual void StopFire();
 
-    virtual void Fire();
-
-    virtual void MakeShot();
     
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+    
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components")
     USkeletalMeshComponent* WeaponMesh;
 
@@ -40,7 +39,8 @@ protected:
     APlayerController *GetPlayerController() const;
     bool GetPlayerViewPoint(FVector &ViewLocation, FRotator &ViewRotation) const;
     FVector GetMuzzleWorldLocation() const;
-    bool GetTraceData(FVector &TraceStart, FVector &TraceEnd) const;
+    virtual bool GetTraceData(FVector &TraceStart, FVector &TraceEnd) const;
     void MakeHit(FHitResult &HitResult, const FVector &TraceStart, const FVector &TraceEnd) const;
     void MakeDamage(FHitResult &HitResult) const;
+    virtual void MakeShot();
 };

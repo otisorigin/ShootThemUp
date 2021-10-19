@@ -18,7 +18,8 @@ public:
     // Sets default values for this component's properties
     USTU_WeaponComponent();
 
-    void Fire();
+    void StartFire();
+    void StopFire();
 
 protected:
     virtual void BeginPlay() override;
