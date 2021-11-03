@@ -3,6 +3,8 @@
 
 #include "Weapon/STURifleWeapon.h"
 #include "DrawDebugHelpers.h"
+#include "Kismet/GameplayStatics.h"
+#include "Player/STUBaseCharacter.h"
 
 void ASTURifleWeapon::StartFire()
 {
@@ -47,4 +49,18 @@ bool ASTURifleWeapon::GetTraceData(FVector& TraceStart, FVector& TraceEnd) const
     TraceEnd = TraceStart + ShootDirection * TraceMaxDistance;
 
     return true;
+}
+
+void ASTURifleWeapon::MakeDamage(FHitResult &HitResult) const
+{
+    if(!HitResult.GetActor()) return;
+    
+    ASTUBaseCharacter* DamagedActor = Cast<ASTUBaseCharacter>(HitResult.GetActor());
+    if(HitResult.BoneName.ToString() == "b_head")
+    {
+        DamagedActor->KillCharacter();
+    } else
+    {
+        UGameplayStatics::ApplyDamage(DamagedActor, DamageAmount, nullptr, nullptr, nullptr);
+    }
 }

@@ -81,19 +81,3 @@ void ASTUBaseWeapon::MakeHit(FHitResult& HitResult, const FVector& TraceStart, c
     GetWorld()->LineTraceSingleByChannel(HitResult, TraceStart, TraceEnd, ECollisionChannel::ECC_Visibility, CollisionParams);
 }
 
-void ASTUBaseWeapon::MakeDamage(FHitResult &HitResult) const
-{
-    UE_LOG(LogBaseWeapon, Display, TEXT("Bone: %s"), *HitResult.BoneName.ToString());
-    if(!HitResult.GetActor()) return;
-    
-    ASTUBaseCharacter* DamagedActor = Cast<ASTUBaseCharacter>(HitResult.GetActor());
-    if(HitResult.BoneName.ToString() == "b_head")
-    {
-        UE_LOG(LogBaseWeapon, Display, TEXT("Killing character"));
-        DamagedActor->KillCharacter();
-    } else
-    {
-        UGameplayStatics::ApplyDamage(DamagedActor, HitValue, nullptr, nullptr, nullptr);
-    }
-}
-

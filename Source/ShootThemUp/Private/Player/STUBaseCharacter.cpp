@@ -72,6 +72,7 @@ void ASTUBaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
     PlayerInputComponent->BindAction("Run", IE_Released, this, &ASTUBaseCharacter::OnStopRunning);
     PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &USTU_WeaponComponent::StartFire);
     PlayerInputComponent->BindAction("Fire", IE_Released, WeaponComponent, &USTU_WeaponComponent::StopFire);
+    PlayerInputComponent->BindAction("NextWeapon", IE_Released, WeaponComponent, &USTU_WeaponComponent::NextWeapon);
 }
 
 bool ASTUBaseCharacter::IsRunning() const
@@ -116,6 +117,7 @@ void ASTUBaseCharacter::OnDeath()
         Controller->ChangeState(NAME_Spectating);
     }
     GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+    WeaponComponent->StopFire();
 }
 
 void ASTUBaseCharacter::OnHealthChanged(float Health)
