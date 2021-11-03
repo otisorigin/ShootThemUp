@@ -130,7 +130,6 @@ void USTU_WeaponComponent::ChangeWeapon(USkeletalMeshComponent *MeshComp/*const 
 
 bool USTU_WeaponComponent::CanFire() const
 {
-    UE_LOG(WeaponComponentLog, Display, TEXT("Cand FIRE %b %b"), CurrentWeapon, EquipAnimInProgress);
     return CurrentWeapon && !EquipAnimInProgress;
 }
 
