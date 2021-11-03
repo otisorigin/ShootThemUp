@@ -20,13 +20,13 @@ public:
 
 protected:
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Weapon")
     float TimeBetweenShots = 0.1f;
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Weapon")
     float BulletSpread = 1.5f;
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Weapon")
     float DamageAmount = 25.0f;
     
     virtual void MakeShot() override;
