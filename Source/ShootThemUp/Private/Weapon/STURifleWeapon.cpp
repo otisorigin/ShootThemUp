@@ -6,10 +6,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "Player/STUBaseCharacter.h"
 
+DEFINE_LOG_CATEGORY_STATIC(RifleWeaponLog, All, All);
+
 void ASTURifleWeapon::StartFire()
 {
-    MakeShot();
     GetWorldTimerManager().SetTimer(ShotTimerHandle, this, &ASTURifleWeapon::MakeShot, TimeBetweenShots, true);
+    MakeShot();
 }
 
 void ASTURifleWeapon::StopFire()
