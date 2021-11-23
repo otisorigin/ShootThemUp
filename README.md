@@ -2,19 +2,21 @@
 
 ![image](https://user-images.githubusercontent.com/29784234/132106323-c65ab7e8-6533-4f24-9516-40f6f1ad2f00.png)
 
-Проект на Unreal Engine 5 из курса: https://www.udemy.com/course/unrealengine/
+Project on Unreal Engine 5 from course: https://www.udemy.com/course/unrealengine/
 
-Курс в процессе прохождения, уже пройден примерно на четверть.
+The Course currently in progress and completed completed by about half.
 
-Что реализовано:
-- Базовое передвижение персонажа
-- Управление камерой
-- Прыжок персонажа
-- Бег персонажа
-- Добавлен компонент здоровья
-- Авторегенерация здоровья
-- Урон при падении с высоты
-- Добавлен компонент оружия
-- Базовая стрельба (с отображением LineTrace)
-- Добавлен Animation Montage для анимации смерти
-- Добавлены BlendSpacы для анимаций бега и ходьбы
+What was done:
+- Basic character movement
+- Camera control
+- Character jump
+- Character running
+- Health component
+- Auto health regeneration
+- Damage when falling from a height
+- Weapon component
+- Basic shooting (with LineTrace and projectiles)
+- Added Animation Montage for death animation
+- Added BlendSpaces for running and walking animations
+- Two types of weapon: rifle and launcher
+- Switching between weapons
