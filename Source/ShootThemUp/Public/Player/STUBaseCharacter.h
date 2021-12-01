@@ -6,15 +6,14 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/STUHealthComponent.h"
+#include "Components/STUWeaponComponent.h"
 #include "Components/TextRenderComponent.h"
-#include "Weapon/STUBaseWeapon.h"
 #include "STUBaseCharacter.generated.h"
 
 class UCameraComponent;
 class USpringArmComponent;
 class USTUHealthComponent;
 class UTextRenderComponent;
-class USTU_WeaponComponent;
 
 UCLASS()
 class SHOOTTHEMUP_API ASTUBaseCharacter : public ACharacter
@@ -38,7 +37,7 @@ protected:
     UTextRenderComponent* HealthTextComponent;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
-    USTU_WeaponComponent* WeaponComponent;
+    USTUWeaponComponent* WeaponComponent;
 
     UPROPERTY(EditDefaultsOnly, Category = "Animation")
     UAnimMontage* DeathAnimMontage;

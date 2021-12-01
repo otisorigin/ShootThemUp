@@ -6,23 +6,25 @@
 #include "STUCoreTypes.h"
 #include "Components/ActorComponent.h"
 #include "Weapon/STUBaseWeapon.h"
-#include "STU_WeaponComponent.generated.h"
+#include "STUWeaponComponent.generated.h"
 
 class ASTUBaseWeapon;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class SHOOTTHEMUP_API USTU_WeaponComponent : public UActorComponent
+class SHOOTTHEMUP_API USTUWeaponComponent : public UActorComponent
 {
     GENERATED_BODY()
 
 public:	
     // Sets default values for this component's properties
-    USTU_WeaponComponent();
+    USTUWeaponComponent();
 
     void StartFire();
     void StopFire();
     void NextWeapon();
     void Reload();
+    
+    bool GetWeaponUIData(FWeaponUIData& UIData) const;
 
 protected:
     virtual void BeginPlay() override;

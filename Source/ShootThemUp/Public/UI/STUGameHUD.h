@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "STU_GameHUD.generated.h"
+#include "STUGameHUD.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SHOOTTHEMUP_API ASTU_GameHUD : public AHUD
+class SHOOTTHEMUP_API ASTUGameHUD : public AHUD
 {
 	GENERATED_BODY()
 

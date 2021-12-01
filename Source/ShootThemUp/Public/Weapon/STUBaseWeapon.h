@@ -21,6 +21,8 @@ public:
     virtual void StopFire();
     void ChangeClip();
     bool CanReload();
+
+    FWeaponUIData GetUIData() const { return UIData; };
     
 protected:
 	virtual void BeginPlay() override;
@@ -36,6 +38,9 @@ protected:
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Weapon")
     FAmmoData DefaultAmmo {15, 10, false};
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="UI")
+    FWeaponUIData UIData;
     
     APlayerController *GetPlayerController() const;
     bool GetPlayerViewPoint(FVector &ViewLocation, FRotator &ViewRotation) const;

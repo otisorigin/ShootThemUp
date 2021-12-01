@@ -1,18 +1,18 @@
 // Shoot Them Up game
 
 
-#include "UI/STU_GameHUD.h"
+#include "UI/STUGameHUD.h"
 
 #include "Blueprint/UserWidget.h"
 #include "Engine/Canvas.h"
 
-void ASTU_GameHUD::DrawHUD()
+void ASTUGameHUD::DrawHUD()
 {
     Super::DrawHUD();
-    DrawCrossHair();
+    //DrawCrossHair();
 }
 
-void ASTU_GameHUD::BeginPlay()
+void ASTUGameHUD::BeginPlay()
 {
     Super::BeginPlay();
     auto PlayerHUDWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDWidgetClass);
@@ -22,7 +22,7 @@ void ASTU_GameHUD::BeginPlay()
     }
 }
 
-void ASTU_GameHUD::DrawCrossHair()
+void ASTUGameHUD::DrawCrossHair()
 {
     const TInterval<float> Center(Canvas->SizeX * 0.5, Canvas->SizeY * 0.5);
 
