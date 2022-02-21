@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "STUCoreTypes.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
@@ -19,6 +20,7 @@ class SHOOTTHEMUP_API ASTUProjectile : public AActor
 public:	
 	ASTUProjectile();
     void SetShotDirection(const FVector& Direction) { ShotDirection = Direction; }
+    void SetProjectileWeapon(ASTUBaseWeapon* Weapon)  { ProjectileWeapon = Weapon; }
 
 protected:
     UPROPERTY(VisibleAnywhere, Category="Weapon")
@@ -42,7 +44,8 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-   FVector ShotDirection;
+    FVector ShotDirection;
+    ASTUBaseWeapon* ProjectileWeapon;
 
     UFUNCTION()
     void OnProjectileHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit );

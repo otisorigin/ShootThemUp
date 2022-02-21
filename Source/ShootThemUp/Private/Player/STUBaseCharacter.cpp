@@ -7,6 +7,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/Components/STUCharacterMovementComponent.h"
 #include "Player/Components/STUWeaponComponent.h"
+#include "UI/STUGameHUD.h"
 
 DEFINE_LOG_CATEGORY_STATIC(BaseCharacterLog, All, All);
 
@@ -129,6 +130,16 @@ void ASTUBaseCharacter::OnHealthChanged(float Health)
 void ASTUBaseCharacter::KillCharacter()
 {
     TakeDamage(HealthComponent->GetMaxHealth(), FDamageEvent { }, nullptr, nullptr);
+}
+
+void ASTUBaseCharacter::ShowHitMarker()
+{
+    APlayerController* PlayerController = Cast<APlayerController>(this->GetController());
+    if(PlayerController)
+    {
+        ASTUGameHUD* GameHUD = Cast<ASTUGameHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
+        GameHUD->ShowHitMarker();
+    }
 }
 
 void ASTUBaseCharacter::OnGroundLanded(const FHitResult &result)

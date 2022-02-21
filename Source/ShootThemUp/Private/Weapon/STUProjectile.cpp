@@ -5,6 +5,7 @@
 
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "Weapon/STUBaseWeapon.h"
 
 ASTUProjectile::ASTUProjectile()
 {
@@ -42,7 +43,7 @@ void ASTUProjectile::OnProjectileHit(UPrimitiveComponent *HitComponent,
     MovementComponent->StopMovementImmediately();
 
     //make damage
-    UGameplayStatics::ApplyRadialDamage(
+    const bool IsMadeDamage = UGameplayStatics::ApplyRadialDamage(
         GetWorld(),
         DamageAmount,
         GetActorLocation(),
@@ -52,6 +53,11 @@ void ASTUProjectile::OnProjectileHit(UPrimitiveComponent *HitComponent,
         this,
         GetController(),
         DoFullDamage);
+
+    if(IsMadeDamage && ProjectileWeapon)
+    {
+        ProjectileWeapon->OnMakeHit.Broadcast();
+    }
 
     DrawDebugSphere(GetWorld(), GetActorLocation(), DamageRadius, 24, FColor::Red, false, 5.0f);
 

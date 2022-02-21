@@ -17,10 +17,15 @@ class SHOOTTHEMUP_API ASTUGameHUD : public AHUD
 public:
     virtual void DrawHUD() override;
 
+    void ShowHitMarker();
+
 protected:
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
     TSubclassOf<UUserWidget> PlayerHUDWidgetClass;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
+    TSubclassOf<UUserWidget> HitMakerWidgetClass;
 
     virtual void BeginPlay() override;
 

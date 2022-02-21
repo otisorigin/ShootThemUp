@@ -1,4 +1,5 @@
 #pragma once
+#include "Animation/WidgetAnimation.h"
 #include "STUCoreTypes.generated.h"
 
 class ASTUBaseWeapon;
@@ -6,6 +7,7 @@ class ASTUBaseWeapon;
  * Weapon types
  */
 DECLARE_MULTICAST_DELEGATE(FOnClipEmptySignature)
+DECLARE_MULTICAST_DELEGATE(FOnMakeHit)
 
 USTRUCT(BlueprintType)
 struct FAmmoData
@@ -50,4 +52,5 @@ struct FWeaponUIData
  * Health types
  */
 DECLARE_MULTICAST_DELEGATE(FOnDeath);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPlayHitMarkerAnimation);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthChanged, float);

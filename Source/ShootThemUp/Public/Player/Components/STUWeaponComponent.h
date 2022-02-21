@@ -18,7 +18,7 @@ class SHOOTTHEMUP_API USTUWeaponComponent : public UActorComponent
 public:	
     // Sets default values for this component's properties
     USTUWeaponComponent();
-
+    
     void StartFire();
     void StopFire();
     void NextWeapon();
@@ -41,20 +41,21 @@ protected:
     
     UPROPERTY(EditDefaultsOnly, Category = "Animation")
     UAnimMontage* EquipAnimMontage;
-
+    
 private:
-   UPROPERTY()
-   ASTUBaseWeapon* CurrentWeapon = nullptr;
+    UPROPERTY()
+    ASTUBaseWeapon* CurrentWeapon = nullptr;
 
     UPROPERTY()
     TArray<ASTUBaseWeapon*> Weapons;
 
     UPROPERTY()
     UAnimMontage* CurrentReloadAnimMontage = nullptr;
-
+    
     int32 CurrentWeaponIndex = 0;
     bool EquipAnimInProgress = false;
     bool ReloadAnimInProgress = false;
+    FTimerHandle MakeHitTimerHandle;
    
     void SpawnWeapons();
     void AttachWeaponToSocket(ASTUBaseWeapon *Weapon, USceneComponent *SceneComponent, const FName &SocketName);
@@ -71,5 +72,6 @@ private:
     bool CanReload() const;
 
     void OnEmptyClip();
+    void OnMakeHit() const;
     void ChangeClip();
 };

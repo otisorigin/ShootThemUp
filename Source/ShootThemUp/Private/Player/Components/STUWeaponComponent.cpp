@@ -9,7 +9,9 @@
 #include "Animations/STUReloadFinishedAnimNotify.h"
 #include "Animations/STUWeaponChangeAnimNotify.h"
 #include "GameFramework/Character.h"
+#include "Player/STUBaseCharacter.h"
 #include "Weapon/STUBaseWeapon.h"
+#include "Weapon/STULuancherWeapon.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeaponComponent, All, All);
 
@@ -55,6 +57,7 @@ void USTUWeaponComponent::SpawnWeapons()
         if(!Weapon) continue;
 
         Weapon->OnClipEmpty.AddUObject(this, &USTUWeaponComponent::OnEmptyClip);
+        Weapon->OnMakeHit.AddUObject(this, &USTUWeaponComponent::OnMakeHit);
         Weapon->SetOwner(Character);
         Weapons.Add(Weapon);
         AttachWeaponToSocket(Weapon, Character->GetMesh(), WeaponArmorySocketName);
@@ -212,6 +215,15 @@ bool USTUWeaponComponent::GetWeaponUIData(FWeaponUIData &UIData) const
 void USTUWeaponComponent::OnEmptyClip()
 {
     ChangeClip();
+}
+
+void USTUWeaponComponent::OnMakeHit() const
+{
+    ASTUBaseCharacter* Character = Cast<ASTUBaseCharacter>(GetOwner());
+    if(Character)
+    {
+        Character->ShowHitMarker();
+    }
 }
 
 void USTUWeaponComponent::ChangeClip()

@@ -12,6 +12,15 @@ void ASTUGameHUD::DrawHUD()
     //DrawCrossHair();
 }
 
+void ASTUGameHUD::ShowHitMarker()
+{
+    auto HitMakerWidget = CreateWidget<UUserWidget>(GetWorld(), HitMakerWidgetClass);
+    if(HitMakerWidget)
+    {
+        HitMakerWidget->AddToViewport();
+    }
+}
+
 void ASTUGameHUD::BeginPlay()
 {
     Super::BeginPlay();

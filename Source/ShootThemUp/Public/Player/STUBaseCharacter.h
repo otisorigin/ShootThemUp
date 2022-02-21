@@ -62,6 +62,7 @@ public:
     float GetMovementDirection() const;
 
     void KillCharacter();
+    void ShowHitMarker();
 
 private:
     bool IsMovingForward = false;
