@@ -24,6 +24,7 @@ public:
     bool CanReload();
 
     FWeaponUIData GetUIData() const { return UIData; };
+    FAmmoData GetAmmoData() const { return CurrentAmmo; }
     
 protected:
 	virtual void BeginPlay() override;
@@ -53,7 +54,6 @@ protected:
     void DecreaseAmmo();
     bool IsAmmoEmpty() const;
     bool IsClipEmpty() const;
-    void LogAmmo();
 
 private:
     FAmmoData CurrentAmmo;

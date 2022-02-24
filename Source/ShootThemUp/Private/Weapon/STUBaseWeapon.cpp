@@ -43,8 +43,7 @@ void ASTUBaseWeapon::DecreaseAmmo()
         return;
     }
     CurrentAmmo.Bullets--;
-
-    LogAmmo();
+    
     if(IsClipEmpty() && !IsAmmoEmpty())
     {
         StopFire();
@@ -80,13 +79,6 @@ void ASTUBaseWeapon::ChangeClip()
 bool ASTUBaseWeapon::CanReload()
 {
     return CurrentAmmo.Bullets < DefaultAmmo.Bullets && CurrentAmmo.Clips > 0;
-}
-
-void ASTUBaseWeapon::LogAmmo()
-{
-    FString AmmoInfo = "Ammo: " + FString::FromInt(CurrentAmmo.Bullets) + " / ";
-    AmmoInfo += CurrentAmmo.Infinite ? "Infinite" : FString::FromInt(CurrentAmmo.Clips);
-    UE_LOG(LogBaseWeapon, Display, TEXT("%s"), *AmmoInfo);
 }
 
 APlayerController* ASTUBaseWeapon::GetPlayerController() const
